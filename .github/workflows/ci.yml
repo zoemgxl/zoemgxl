@@ -20,9 +20,19 @@ jobs:
 
       - name: Auto green
         run: |
-          git config --local user.email "zoemgxl131@gmail.com"
-          git config --local user.name "zoemgxl"
-          git remote set-url origin https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
-          git pull --rebase
-          git commit --allow-empty -m "a commit a day keeps your girlfriend away"
-          git push
+         # 设置本地 Git 用户信息
+git config --local user.email "zoemgxl131@gmail.com"
+git config --local user.name "zoemgxl"
+
+# 设置远程仓库的 URL，替换 <USERNAME> 和 <REPO> 为您的 GitHub 用户名和仓库名
+git remote set-url origin https://<USERNAME>:${{ secrets.GITHUB_TOKEN }}@github.com/<USERNAME>/<REPO>.git
+
+# 从远程仓库拉取最新的更改，并在本地执行 rebase 操作
+git pull --rebase
+
+# 创建一个空的提交，注意提交信息可以更加有意义
+git commit --allow-empty -m "Daily commit: Add/update code" 
+
+# 将本地提交推送到远程仓库
+git push
+
